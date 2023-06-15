@@ -1,0 +1,39 @@
+{
+    "name": "strategies",
+    "version": "1.0.0",
+    "description": "GENESIS::STRATEGIES",
+    "repository": "https://github.com/cybearl/strategies",
+    "author": "yoratoni <yoratoni.dev@gmail.com>",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+
+    },
+    "dependencies": {
+        "@types/minimist": "^1.2.2",
+        "date-and-time": "^3.0.0",
+        "dotenv": "^16.0.3",
+        "lodash": "^4.17.21",
+        "minimist": "^1.2.8",
+        "node-os-utils": "^1.3.7",
+        "ts-node": "^10.9.1",
+        "winston": "^3.8.2"
+    },
+    "devDependencies": {
+        "@total-typescript/ts-reset": "^0.4.2",
+        "@types/chai": "^4.3.5",
+        "@types/lodash": "^4.14.194",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^18.16.3",
+        "@types/node-os-utils": "^1.3.1",
+        "@types/speedtest-net": "^2.1.1",
+        "@typescript-eslint/eslint-plugin": "^5.59.2",
+        "@typescript-eslint/parser": "^5.59.2",
+        "eslint": "^8.39.0",
+        "eslint-import-resolver-typescript": "^3.5.5",
+        "eslint-plugin-import": "^2.27.5",
+        "ts-node": "^10.9.1",
+        "tsconfig-paths": "^4.2.0",
+        "typescript": "^5.0.4"
+    }
+}
