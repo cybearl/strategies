@@ -2,7 +2,7 @@
 import NsStrategy from "types/strategy";
 import logger from "utils/logger";
 
-import { Strategy } from "strategies";
+import { Strategy } from "./";
 
 
 /**
@@ -21,14 +21,11 @@ export default class Strategy4__CRYPTOCURRENCIES extends Strategy {
 
         for (const priceBar of pricesBars) {
             if (!this._inPosition) {
-                //if (priceBar.signal == true) {
-                //TODO: je sais pas si c'est pertinent j'ai l'impression que ça l'empêche limite de fonctionner CF : video (1:50 -> 7:06)
                 slAnchor = priceBar.close;
                 buyPrice = priceBar.close;
                 this.buyTimestamps.push(priceBar.timestamp);
                 this.buyPrices.push(buyPrice);
                 this._inPosition = true;
-                //}
             } else {
                 if (priceBar.close > slAnchor) {
                     slAnchor = priceBar.close;

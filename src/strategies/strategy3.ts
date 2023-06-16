@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 import NsStrategy from "types/strategy";
 import logger from "utils/logger";
 
-import { Strategy } from "strategies";
+import { Strategy } from "./";
 
 
 /**

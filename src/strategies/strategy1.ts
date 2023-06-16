@@ -1,6 +1,6 @@
 import NsStrategy from "types/strategy";
 
-import { Strategy } from "strategies";
+import { Strategy } from "./";
 
 
 /**

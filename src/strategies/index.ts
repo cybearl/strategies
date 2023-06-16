@@ -1,8 +1,9 @@
-import Strategy from "strategies/strategy";
-import Strategy1__INTRADAY from "strategies/strategy1";
-import Strategy2__GRID from "strategies/strategy2";
-import Strategy3__FIBONACCI from "strategies/strategy3";
-import Strategy4__CRYPTOCURRENCIES from "strategies/strategy4";
+import Strategy from "./strategy";
+import Strategy1__INTRADAY from "./strategy1";
+import Strategy2__GRID from "./strategy2";
+import Strategy3__FIBONACCI from "./strategy3";
+import Strategy4__CRYPTOCURRENCIES from "./strategy4";
+
 
 
 export {
