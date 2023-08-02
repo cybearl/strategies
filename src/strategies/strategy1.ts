@@ -1,22 +1,22 @@
 import NsStrategy from "types/strategy";
 
-import { Strategy } from "./";
+import BaseStrategy from "strategies/base";
 
 
 /**
  * Strategy 1 implementation (Intraday Trading Strategy).
  * @link https://www.youtube.com/watch?v=XA5EI0rmYeA
  */
-export default class Strategy1__INTRADAY extends Strategy {
+export default class Strategy1__INTRADAY extends BaseStrategy {
     /**
      * Main function to run the strategy.
-     * @param pricesBars The prices bars to run the strategy on.
-     * @returns The profits array.
+     * @param input The input data.
+     * @returns The output data.
      */
-    run(pricesBars: Array<NsStrategy.priceBar>): Array<number> {
+    run(input: NsStrategy.input): NsStrategy.output {
         let buyPrice = 0;
 
-        for (const priceBar of pricesBars) {
+        for (const priceBar of input.priceBars) {
             priceBar.pctChange = priceBar.close / priceBar.open - 1;
             this.percentage = 0.002;
 
@@ -31,29 +31,35 @@ export default class Strategy1__INTRADAY extends Strategy {
                     buyPrice = priceBar.close; // Close
                     boughtAt = index;
 
+                    this._output.buyTimestamps.push(priceBar.timestamp);
+                    this._output.buyPrices.push(buyPrice);
+
                     tp = buyPrice * (1 + this.percentage);
                     sl = buyPrice * (1 - this.percentage);
 
                     this._inPosition = true;
                 }
             } else if (index > boughtAt) {
-                // High
                 if (priceBar.high > tp) {
-                    this._profits.push(priceBar.close - buyPrice);
-                    this._inPosition = false;
-                    // Low
+                    // High
+                    this._output.rawProfits.push(priceBar.close - buyPrice);
+
+                    this._output.sellTimestamps.push(priceBar.timestamp);
+                    this._output.sellPrices.push(priceBar.close);
                 } else if (priceBar.low < sl) {
-                    this._profits.push(priceBar.close - buyPrice);
-                    this._inPosition = false;
-                    // Reset position
-                } else {
-                    this._inPosition = false;
+                    // Low
+                    this._output.rawProfits.push(priceBar.close - buyPrice);
+
+                    this._output.sellTimestamps.push(priceBar.timestamp);
+                    this._output.sellPrices.push(priceBar.close);
                 }
+
+                this._inPosition = false;
             }
 
             index++;
         }
 
-        return this._profits;
+        return this._output;
     }
 }

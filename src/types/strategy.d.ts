@@ -12,6 +12,24 @@ declare namespace NsStrategy {
         pctChange: number | null;
         price: number;
     }
+
+    /**
+     * Standardized interface for strategy input data.
+     */
+    interface input {
+        priceBars: priceBar[];
+    }
+
+    /**
+     * Standardized interface for strategy output data.
+     */
+    interface output {
+        rawProfits: number[];
+        buyTimestamps: number[];
+        buyPrices: number[];
+        sellTimestamps: number[];
+        sellPrices: number[];
+    }
 }
 
 

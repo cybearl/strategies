@@ -1,14 +1,14 @@
 import NsStrategy from "types/strategy";
 import logger from "utils/logger";
 
-import { Strategy } from "./";
+import BaseStrategy from "strategies/base";
 
 
 /**
  * Strategy 2 implementation (GRID Trading Strategy).
  * @link https://www.youtube.com/watch?v=pvdxNFagNvk
  */
-export default class Strategy2__GRID extends Strategy {
+export default class Strategy2__GRID extends BaseStrategy {
     /**
      * Get the levels for the strategy.
      * @param timestamp The timestamp to get the levels for.
@@ -16,7 +16,7 @@ export default class Strategy2__GRID extends Strategy {
      * @param first If it's the first level or not (optional, defaults to true).
      * @returns The levels.
      */
-    getLevels(timestamp: number, priceBars: Array<NsStrategy.priceBar>, first = true) {
+    getLevels(timestamp: number, priceBars: NsStrategy.priceBar[], first = true) {
         this.percentage = 0.002;
 
         for (const priceBar of priceBars) {
@@ -38,20 +38,20 @@ export default class Strategy2__GRID extends Strategy {
 
     /**
      * Main function to run the strategy.
-     * @param pricesBars The prices bars to run the strategy on.
-     * @returns The profits array.
+     * @param input The input data.
+     * @returns The output data.
      */
-    run(pricesBars: Array<NsStrategy.priceBar>): Array<number> {
+    run(input: NsStrategy.input): NsStrategy.output {
         let firstBuyPrice = 0;
         let secondBuyPrice = 0;
 
-        for (const priceBar of pricesBars) {
+        for (const priceBar of input.priceBars) {
             let firstLevels: Array<number> | undefined = [0, 0];
             let secondLevels: Array<number> | undefined = [0, 0];
 
             if (!this._inPositionArray[0]) {
-                firstLevels = this.getLevels(priceBar.timestamp, pricesBars);
-                secondLevels = this.getLevels(priceBar.timestamp, pricesBars, false);
+                firstLevels = this.getLevels(priceBar.timestamp, input.priceBars);
+                secondLevels = this.getLevels(priceBar.timestamp, input.priceBars, false);
 
                 if (firstLevels !== undefined) {
                     if (priceBar.low <= firstLevels[0]) {
@@ -75,7 +75,7 @@ export default class Strategy2__GRID extends Strategy {
                         logger.info(`Sell the first at ${priceBar.close}`);
 
                         this._inPositionArray[0] = false;
-                        this._profits.push(priceBar.close - firstBuyPrice);
+                        this._output.rawProfits.push(priceBar.close - firstBuyPrice);
                     }
                 }
             } else {
@@ -84,11 +84,11 @@ export default class Strategy2__GRID extends Strategy {
                     logger.info(`Sell the second at ${priceBar.close}`);
 
                     this._inPosition = false;
-                    this._profits.push(priceBar.close - secondBuyPrice);
+                    this._output.rawProfits.push(priceBar.close - secondBuyPrice);
                 }
             }
         }
 
-        return this._profits;
+        return this._output;
     }
 }

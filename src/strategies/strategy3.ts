@@ -3,14 +3,14 @@
 import NsStrategy from "types/strategy";
 import logger from "utils/logger";
 
-import { Strategy } from "./";
+import BaseStrategy from "strategies/base";
 
 
 /**
  * Strategy 3 implementation (Fibonacci Trading Strategy).
  * @link https://www.youtube.com/watch?v=MzIE-u2_a7A
  */
-export default class Strategy3__FIBONACCI extends Strategy {
+export default class Strategy3__FIBONACCI extends BaseStrategy {
     /**
      * Get the levels for the strategy.
      * @param timestamp The timestamp to get the levels for.
@@ -50,14 +50,14 @@ export default class Strategy3__FIBONACCI extends Strategy {
 
     /**
      * Main function to run the strategy.
-     * @param pricesBars The prices bars to run the strategy on.
-     * @returns The profits array.
+     * @param input The input data.
+     * @returns The output data.
      */
-    run(pricesBars: Array<NsStrategy.priceBar>): Array<number> {
+    run(input: NsStrategy.input): NsStrategy.output {
         let buyPrice = 0;
 
-        for (const priceBar of pricesBars) {
-            const [sl, entry, tp] = this.getLevels(priceBar.timestamp, pricesBars);
+        for (const priceBar of input.priceBars) {
+            const [sl, entry, tp] = this.getLevels(priceBar.timestamp, input.priceBars);
 
             if (!this._inPosition && priceBar.close >= entry) {
                 logger.info(`Buy at ${priceBar.close}`);
@@ -68,12 +68,12 @@ export default class Strategy3__FIBONACCI extends Strategy {
                 if (priceBar.close <= sl || priceBar.close >= tp) {
                     logger.info(`Sell at ${priceBar.close}`);
 
-                    this._profits.push(priceBar.close - buyPrice);
+                    this._output.rawProfits.push(priceBar.close - buyPrice);
                     this._inPosition = false;
                 }
             }
         }
 
-        return this._profits;
+        return this._output;
     }
 }
