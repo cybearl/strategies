@@ -3,14 +3,9 @@ import NsStrategy from "types/strategy";
 
 
 /**
- * Default class for strategy implementation.
+ * Base class for strategy implementation.
  */
-export default class BaseStrategy {
-    protected percentage = 0;
-
-    protected _inPosition = false;
-    protected _inPositionArray = [false, false];
-
+export default class Base {
     /**
      * Standardized way of returning the output data.
      */
@@ -24,7 +19,7 @@ export default class BaseStrategy {
 
     /**
      * Main function to run the strategy.
-     * @param input The input data.
+     * @param input Standardized input data object.
      * @returns The output data.
      */
     run(input: NsStrategy.input): NsStrategy.output {
