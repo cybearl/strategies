@@ -11,12 +11,6 @@
     <a href="https://github.com/cybearl/genesis/blob/main/LICENSE" target="_blank">
         <img src="https://img.shields.io/github/license/cybearl/genesis?color=D962F2&style=flat-square">
     </a>
-    <a href="https://github.com/cybearl/genesis/issues" target="_blank">
-        <img src="https://img.shields.io/github/issues-raw/cybearl/genesis?color=FF8D70&style=flat-square">
-    </a>
-    <a href="https://github.com/cybearl/genesis/blob/main/package.json" target="_blank">
-        <img src="https://img.shields.io/github/package-json/v/cybearl/genesis?color=FDD384&style=flat-square">
-    </a>
 </p>
 
 
