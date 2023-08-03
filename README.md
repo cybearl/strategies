@@ -47,15 +47,13 @@ Such as this (replace xxx with the strategy name):
 ```typescript
 /**
  * Xxx strategy.
- * @param input Standard strategy I/O storage.
- * @returns Standard strategy I/O storage.
+ * @param storage Standard strategy I/O input storage.
+ * @returns Standard strategy I/O output storage.
  * @source [author](video link)
  */
 export default function intradayStrategy(
-    input: NsStrategy.storage
+    storage: NsStrategy.storage
 ): NsStrategy.storage {
-    const storage = input;
-
 
 
     return storage;
