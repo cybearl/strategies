@@ -45,24 +45,26 @@ Such as this (replace xxx with the strategy name).
 ```typescript
 /**
  * Xxx strategy.
- * @param input Standard strategy input.
- * @param index Index of the current data to process.
- * @source [AUTHOR_NAME](SOURCE_LINK)
+ * @param input Standard strategy I/O storage.
+ * @returns Standard strategy I/O storage.
+ * @source [author](video link)
  */
-export default function xxxStrategy(
-    input: NsStrategy.input,
-    index: number
-): NsStrategy.output {
-    return {
+export default function intradayStrategy(
+    input: NsStrategy.storage
+): NsStrategy.storage {
+    const storage = input;
 
+
+
+    return {
+        ...storage
     };
 }
 ```
 
-Definition file import
-----------------------
-The `strategy.d.ts` file is imported from the main Genesis repository and is used to define the standard strategy format.
-As these types are spread across multiple files, it is easier to import them from the main repository instead of
+Using this repository alone
+---------------------------
+Some files such as `strategy.d.ts` are imported from the main Genesis repository and are used to define the standard strategy format. As these types are spread across multiple files, it is easier to import them from the main repository instead of
 copying them here and having to update them manually.
 
 **But** we made it simple for you, all imports of this definition file from the strategies points to the `utils/imports.ts` file,
@@ -72,3 +74,12 @@ So, if you want to use this repo as a standalone, you will need to copy the `str
 and place it in a `src/types` folder.
 
 You should also change the NsStrategy `import` statement in the `utils/imports.ts` file to point to the local file instead of the main repo.
+
+It is the exact same thing for the initial empty storage object that is used by the strategies, it is imported from the main repo
+(`src/configs/strategy.config.ts`), you will need to copy it to a `src/configs` folder
+and change the import statement in the `utils/imports.ts` file.
+
+About `tsconfig.json`:
+- Set `composite` to `true`.
+- Comment out `rootDirs`.
+- Set `rootDir` to `./src`.

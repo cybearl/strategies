@@ -3,15 +3,16 @@ import { NsStrategy } from "utils/imports"
 
 /**
  * Intraday strategy.
- * @param input Standard strategy input.
- * @param index Index of the current data to process.
+ * @param input Standard strategy I/O storage.
+ * @returns Standard strategy I/O storage.
  * @source [Algovibes](https://www.youtube.com/watch?v=XA5EI0rmYeA)
  */
 export default function intradayStrategy(
-    input: NsStrategy.input,
-    index: number
-): NsStrategy.output {
+    input: NsStrategy.storage
+): NsStrategy.storage {
+    const storage = input;
+
     return {
-        symbol: input.symbol
+        ...storage
     };
 }

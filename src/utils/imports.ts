@@ -4,8 +4,10 @@
 
 
 import NsStrategy from "../../../types/strategy";
+import emptyStorage from "../../../configs/strategy.config";
 
 
 export {
-    NsStrategy
+    NsStrategy,
+    emptyStorage
 }
