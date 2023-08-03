@@ -12,7 +12,7 @@ export default function intradayStrategy(
 ): NsStrategy.storage {
     const storage = input;
 
-    return {
-        ...storage
-    };
+
+
+    return storage;
 }

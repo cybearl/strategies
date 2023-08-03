@@ -56,9 +56,7 @@ export default function intradayStrategy(
 
 
 
-    return {
-        ...storage
-    };
+    return storage;
 }
 ```
 
