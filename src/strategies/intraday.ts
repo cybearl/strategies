@@ -11,6 +11,7 @@ export default function run(
     storage: NsStrategy.storage
 ): NsStrategy.storage {
 
+    console.log("Intraday strategy running...");
 
     return storage;
 }
