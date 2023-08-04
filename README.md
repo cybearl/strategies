@@ -68,9 +68,9 @@ to link the Genesis repo and the sub strategies repo together.
 These two endpoints can be found inside the `src/utils` directory of this repository.
 it allows better control of the imports between the two repositories. Now,
 this repo can be used alone without the need of Genesis, you just have to change the imports
-and exports inside the endpoint files to make it work.
+and exports inside the endpoint files, add the missing files locally, to make it work.
 
-Note that you should also check the `tsconfig.json` file, certainly setting "composite" to true
-and comment out "rootDirs" to replace it by the classic "rootDir" option set to "./src".
+Note that you should also check the `tsconfig.json` file, certainly by setting "composite" to true
+and commenting out "rootDirs" to replace it by the classic "rootDir" option set to "./src".
 
 Not really useful but it's a good thing to know.
