@@ -46,12 +46,12 @@ Such as this (replace xxx with the strategy name):
 
 ```typescript
 /**
- * Xxx strategy.
+ * Strategy main function.
  * @param storage Standard strategy I/O input storage.
  * @returns Standard strategy I/O output storage.
  * @source [author.](video link)
  */
-export default function intradayStrategy(
+export default function run(
     storage: NsStrategy.storage
 ): NsStrategy.storage {
 
@@ -60,28 +60,17 @@ export default function intradayStrategy(
 }
 ```
 
-Using this repository alone
----------------------------
-Some files such as `strategy.d.ts` are imported from the main Genesis repository and are used
-to define the standard strategy format. As these types are spread across multiple files,
-it is easier to import them from the main repository instead of copying them here
-and having to update them manually.
+Dependant of Genesis
+--------------------
+This repository is an entire part of the Genesis project, we are using two TS endpoints
+to link the Genesis repo and the sub strategies repo together.
 
-**But** we made it simple for you, all imports of this definition file from the strategies points
-to the `utils/imports.ts` file, so you don't have to change all of them.
+These two endpoints can be found inside the `src/utils` directory of this repository.
+it allows better control of the imports between the two repositories. Now,
+this repo can be used alone without the need of Genesis, you just have to change the imports
+and exports inside the endpoint files to make it work.
 
-So, if you want to use this repo as a standalone, you will need to copy the `strategy.d.ts` file
-from the main repo and place it in a `src/types` folder.
+Note that you should also check the `tsconfig.json` file, certainly setting "composite" to true
+and comment out "rootDirs" to replace it by the classic "rootDir" option set to "./src".
 
-You should also change the NsStrategy `import` statement in the `utils/imports.ts` file to point
-to the local file instead of the main repo.
-
-It is the exact same thing for the initial empty storage object that is used by the strategies,
-it is imported from the main repo (`src/configs/strategy.config.ts`),
-you will need to copy it to a `src/configs` folder and change the import statement
-in the `utils/imports.ts` file.
-
-About `tsconfig.json`:
-- Set `composite` to `true`.
-- Comment out `rootDirs`.
-- Set `rootDir` to `./src`.
+Not really useful but it's a good thing to know.

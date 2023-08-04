@@ -1,13 +1,13 @@
-import { NsStrategy } from "utils/imports"
+import { NsStrategy } from "../utils/imports"
 
 
 /**
- * Intraday strategy.
+ * Strategy main function.
  * @param storage Standard strategy I/O input storage.
  * @returns Standard strategy I/O output storage.
  * @source [Algovibes.](https://www.youtube.com/watch?v=XA5EI0rmYeA)
  */
-export default function intradayStrategy(
+export default function run(
     storage: NsStrategy.storage
 ): NsStrategy.storage {
 
