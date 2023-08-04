@@ -49,7 +49,7 @@ Such as this (replace xxx with the strategy name):
  * Xxx strategy.
  * @param storage Standard strategy I/O input storage.
  * @returns Standard strategy I/O output storage.
- * @source [author](video link)
+ * @source [author.](video link)
  */
 export default function intradayStrategy(
     storage: NsStrategy.storage
