@@ -15,13 +15,11 @@ export default function run(
         storage.priceBars.length - 1
     ];
 
-    logger.info(`Price bar PCT change: ${priceBar.pctChange}`);
-
     if (!storage.inPosition) {
-        if (priceBar.pctChange && priceBar.pctChange > 0.01 && priceBar.forwardLookingBias) {
+        if (priceBar.pctChange && priceBar.pctChange > 0.001 && priceBar.forwardLookingBias) {
             storage.lastBuyPrice = priceBar.forwardLookingBias;
-            storage.targetProfit = storage.lastBuyPrice * 1.02;
-            storage.stopLoss = storage.lastBuyPrice * 0.98;
+            storage.targetProfit = storage.lastBuyPrice * 1.0015;
+            storage.stopLoss = 0;
 
             storage.inPosition = true;
 

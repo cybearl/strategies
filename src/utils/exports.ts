@@ -7,4 +7,4 @@ import intraday from "../strategies/intraday";
 
 export {
     intraday
-}
+};

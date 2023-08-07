@@ -4,11 +4,11 @@
  * as these are the imports used in all the strategies.
  */
 
-import NsStrategy from "../../../types/strategy";
 import storageObject from "../../../objects/storageObject";
+import NsStrategy from "../../../types/strategy";
 
 
 export {
     NsStrategy,
     storageObject
-}
+};
