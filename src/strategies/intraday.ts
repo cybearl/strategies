@@ -26,26 +26,52 @@ export default function run(
             logger.info(
                 `Bought at ${storage.lastBuyPrice} (target profit: ${storage.targetProfit}, stop loss: ${storage.stopLoss})`
             );
+
+            storage.stats.buyIndexes.push(storage.index);
         }
     }
 
     if (storage.inPosition) {
         if (priceBar.high > storage.targetProfit) {
-            const profit = ((storage.targetProfit - storage.lastBuyPrice) / storage.lastBuyPrice) - 0.001;
-            storage.rawProfits.push(profit);
-
             storage.inPosition = false;
 
             logger.info(`Sold at ${storage.targetProfit} (target profit)`);
+
+            storage.stats.sellIndexes.push(storage.index);
+            storage.stats.tradesWon++;
+            storage.stats.trades++;
+
+            storage.stats.profitsInBaseCurrency.push(
+                storage.targetProfit - storage.lastBuyPrice
+            );
+
+            storage.stats.profitsInQuoteCurrency.push(
+                (storage.targetProfit - storage.lastBuyPrice) * storage.lastBuyPrice
+            );
+
+            storage.stats.tradesWonPct = (storage.stats.tradesWon / storage.stats.trades) * 100;
+            storage.stats.tradesLostPct = (storage.stats.tradesLost / storage.stats.trades) * 100;
         }
 
         if (priceBar.low < storage.stopLoss) {
-            const profit = ((storage.stopLoss - storage.lastBuyPrice) / storage.lastBuyPrice) - 0.001;
-            storage.rawProfits.push(profit);
-
             storage.inPosition = false;
 
             logger.info(`Sold at ${storage.stopLoss} (stop loss)`);
+
+            storage.stats.sellIndexes.push(storage.index);
+            storage.stats.tradesLost++;
+            storage.stats.trades++;
+
+            storage.stats.profitsInBaseCurrency.push(
+                storage.stopLoss - storage.lastBuyPrice
+            );
+
+            storage.stats.profitsInQuoteCurrency.push(
+                (storage.stopLoss - storage.lastBuyPrice) * storage.lastBuyPrice
+            );
+
+            storage.stats.tradesWonPct = (storage.stats.tradesWon / storage.stats.trades) * 100;
+            storage.stats.tradesLostPct = (storage.stats.tradesLost / storage.stats.trades) * 100;
         }
     }
 
