@@ -8,9 +8,7 @@ import logger from "../utils/logger";
  * @returns Standard strategy I/O output storage.
  * @source [Algovibes.](https://www.youtube.com/watch?v=XA5EI0rmYeA)
  */
-export default function run(
-    storage: NsStrategy.storage
-): NsStrategy.storage {
+export default function run(storage: NsStrategy.storage): NsStrategy.storage {
     const priceBar = storage.priceBars[
         storage.priceBars.length - 1
     ];

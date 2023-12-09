@@ -42,8 +42,7 @@ Standard strategy format
 Each strategy should be a function that takes a single object as input
 and returns a standardized object as output.
 
-Such as this (replace xxx with the strategy name):
-
+Such as this:
 ```typescript
 /**
  * Strategy main function.
@@ -51,9 +50,7 @@ Such as this (replace xxx with the strategy name):
  * @returns Standard strategy I/O output storage.
  * @source [author.](video link)
  */
-export default function run(
-    storage: NsStrategy.storage
-): NsStrategy.storage {
+export default function run(storage: NsStrategy.storage): NsStrategy.storage {
 
 
     return storage;
