@@ -1,5 +1,4 @@
 module.exports = {
-    root: true,
     plugins: [
         "@typescript-eslint",
         "import"
@@ -11,27 +10,24 @@ module.exports = {
     ],
     parser: "@typescript-eslint/parser",
     parserOptions: {
-        ecmaFeatures: {
-            jsx: true
-        },
         ecmaVersion: "latest",
         sourceType: "module"
     },
     settings: {
         "import/parsers": {
-            "@typescript-eslint/parser": [".ts", ".tsx"]
+            "@typescript-eslint/parser": [".ts"]
         },
         "import/resolver": {
             "typescript": {
                 "alwaysTryTypes": true,
-                "project": "packages/*/tsconfig.json"
+                "project": "./tsconfig.json"
             }
         },
     },
     rules: {
         "indent": "off",
         "@typescript-eslint/indent": [
-            "error",
+            "warn",
             4,
             {
                 "SwitchCase": 1
@@ -46,13 +42,16 @@ module.exports = {
             "double"
         ],
         "semi": [
-            "warn",
+            "error",
             "always"
         ],
         "object-curly-spacing": [
             "warn",
             "always"
         ],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
         "sort-imports": [
             "warn",
             {
@@ -80,6 +79,22 @@ module.exports = {
                     order: "asc",
                     caseInsensitive: true
                 }
+            }
+        ],
+        "import/no-useless-path-segments": [
+            "warn",
+            {
+                noUselessIndex: true
+            }
+        ],
+        "arrow-body-style": [
+            "warn",
+            "as-needed"
+        ],
+        "import/newline-after-import": [
+            "warn",
+            {
+                count: 2
             }
         ]
     }
