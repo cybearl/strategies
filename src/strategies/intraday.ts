@@ -14,8 +14,8 @@ export default function run(storage: NsStrategy.storage): NsStrategy.storage {
     ];
 
     if (!storage.inPosition) {
-        if (priceBar.pctChange && priceBar.pctChange > 0.001 && priceBar.forwardLookingBias) {
-            storage.lastBuyPrice = priceBar.forwardLookingBias;
+        if (priceBar.pctChange && priceBar.pctChange > 0.001 && priceBar.lookAheadBias) {
+            storage.lastBuyPrice = priceBar.lookAheadBias;
             storage.targetProfit = storage.lastBuyPrice * 1.0015;
             storage.stopLoss = 0;
 
